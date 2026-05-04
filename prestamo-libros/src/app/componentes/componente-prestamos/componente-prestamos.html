@@ -1,0 +1,32 @@
+<div class="prestamo-list-container">
+<h2>📅 Gestión de Préstamos</h2>
+
+<app-componente-filtrar [dataSource]="dataSource" label="Filtrar préstamos" placeholder="Buscar por usuario o libro"></app-componente-filtrar>
+
+<div class="prestamo-grid">
+@for(prestamo of dataSource.filteredData;track prestamo.id){
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ prestamo.libro.titulo }}</mat-card-title>
+      <mat-card-subtitle>Prestado a: {{ prestamo.usuario }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="prestamo.libro.portada" alt="{{prestamo.libro.titulo}}">
+    <mat-card-content>
+      <p><strong>Fecha préstamo:</strong> {{ prestamo.fechaPrestamo }}</p>
+      <p><strong>Fecha devolución:</strong> {{ prestamo.fechaDevolucion }}</p>
+      <p><strong>Devuelto:</strong>
+        <span [style.color]="prestamo.devuelto ? 'green' : 'red'">
+          {{ prestamo.devuelto ? 'Sí' : 'No' }}
+        </span>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="marcarDevuelto(prestamo)">MARCAR DEVUELTO</button>
+      <button mat-button [routerLink]="['/libros', prestamo.libro.id]">DETALLES</button>
+    </mat-card-actions>
+  </mat-card>
+}
+</div>
+</div>

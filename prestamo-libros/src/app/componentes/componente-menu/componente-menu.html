@@ -1,0 +1,26 @@
+<button mat-button routerLink="/dashboard">Dashboard</button>
+
+
+<button mat-button [matMenuTriggerFor]="menuLibros">Libros</button>
+<mat-menu #menuLibros="matMenu">
+  <button mat-menu-item routerLink="/libros">Ver Libros</button>
+  <button mat-menu-item routerLink="/libros/alta">Alta Libro</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menuPrestamos">Prestamos</button>
+<mat-menu #menuPrestamos="matMenu">
+  <button mat-menu-item routerLink="/prestamos">Ver Prestamos</button>
+</mat-menu>
+
+@if(this.estaAutenticado()) {
+
+
+<button mat-button (click)="logout()">Cerrar sesión</button>
+}
+@if(!this.estaAutenticado()) {
+  <button mat-button [matMenuTriggerFor]="menuAcceso">Acceso</button>
+  <mat-menu #menuAcceso="matMenu">
+    <button mat-menu-item routerLink="/login">Login</button>
+    <button mat-menu-item routerLink="/registro">Registro</button>
+  </mat-menu>
+}

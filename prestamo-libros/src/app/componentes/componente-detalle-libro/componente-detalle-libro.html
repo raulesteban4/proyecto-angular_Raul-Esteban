@@ -1,0 +1,21 @@
+@if (libro) {
+  <div class="detalle-container">
+    <h2>{{ libro.titulo | uppercase }}</h2>
+
+      <img class="portada-detalle" [src]="libro.portada" alt="{{ libro.titulo }}">
+
+      <p><strong>ID:</strong> {{ libro.id }}</p>
+      <p><strong>Autor:</strong> {{ libro.autor }}</p>
+      <p><strong>Género:</strong> {{ libro.genero }}</p>
+      <p><strong>Año de publicación:</strong> {{ libro.anioPublicacion }}</p>
+      <p><strong>Resumen: </strong> {{ libro.resumen }}</p>
+
+      <p><strong>Disponible:</strong>
+        <span [style.color]="libro.disponible ? 'green' : 'red'">
+          {{ libro.disponible ? 'Sí' : 'No' }}
+        </span>
+      </p>
+
+      <button (click)="goBack()">Volver</button>
+    </div>
+}
