@@ -1,0 +1,21 @@
+		# Dependencias
+node_modules/
+
+# Angular
+.angular/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Entorno
+.env
+
+# VS Code
+.vscode/
+
+# Archivos sistema
+.DS_Store
+Thumbs.db
