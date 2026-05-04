@@ -4,7 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const morgan = require('morgan');
 const rutasJuegos = require('./rutas/rutasJuegos.js');
-const logger = require('./utils/logger.js')
+const rutasLibros = require('./rutas/rutasLibros.js');
+const rutasPrestamos = require('./rutas/rutasPrestamos.js');
+const logger = require('./utils/logger.js');
 const cookieParser = require('cookie-parser');
 const connectMongo = require('connect-mongo');
 const expressSession = require('express-session');
@@ -16,9 +18,11 @@ const cors = require('cors');
 
 const app = express();
 
- app.use(cors({
-  origin: 'http://localhost:4200'
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
 }));
+app.use(express.urlencoded({ extended: true }));
 
 // Permite recibir JSON en peticiones POST
 app.use(express.json());
@@ -55,6 +59,8 @@ mongoose.connect(MONGOURL)
 
 app.use('/juegos', rutasJuegos);
 app.use('/usuarios', rutasUsuarios);
+app.use('/libros', rutasLibros);
+app.use('/prestamos', rutasPrestamos);
 
 app.use((req, res) => {
   const userIP = req.ip;

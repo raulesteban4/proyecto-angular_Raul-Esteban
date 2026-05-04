@@ -1,6 +1,6 @@
 const { body } = require('express-validator');
 
-validarRegistro = [
+const validarRegistro = [
   body('codigo')
     .trim()
     .notEmpty().withMessage('El codigo es obligatorio')
@@ -22,7 +22,7 @@ validarRegistro = [
     .escape()
 ];
 
-validarLogin = [
+const validarLogin = [
   body('codigo')
     .trim()
     .notEmpty().withMessage('El codigo es obligatorio')
@@ -33,4 +33,34 @@ validarLogin = [
     .escape(),
 ];
 
-module.exports =  { validarLogin, validarRegistro}
+const validarUsuarioActualizacion = [
+  body('codigo')
+    .optional()
+    .trim()
+    .isLength({ min: 3 }).withMessage('El codigo debe tener al menos 3 caracteres')
+    .escape(),
+  body('email')
+    .optional()
+    .trim()
+    .isEmail().withMessage('Debe ser un email válido')
+    .normalizeEmail(),
+  body('clave')
+    .optional()
+    .isLength({ min: 6 }).withMessage('La contraseña debe tener al menos 6 caracteres')
+    .escape(),
+  body('nombre')
+    .optional()
+    .trim()
+    .isLength({ min: 3 }).withMessage('El nombre debe tener al menos 3 caracteres')
+    .escape(),
+  body('perfil')
+    .optional()
+    .trim()
+    .isIn(['user', 'admin']).withMessage('El perfil debe ser user o admin'),
+  body('estado')
+    .optional()
+    .trim()
+    .escape()
+];
+
+module.exports = { validarLogin, validarRegistro, validarUsuarioActualizacion };

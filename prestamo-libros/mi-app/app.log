@@ -164,3 +164,50 @@
 2026-05-04T16:35:27.070Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: usuario 12345 no encontrado
 2026-05-04T16:35:49.133Z [INFO] ::1 - - "POST /usuarios/registro" REGISTRO: Usuario registrado
 2026-05-04T16:36:00.484Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto de 69f8cae58d6933329f78cfd1 
+2026-05-04T18:42:35.154Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T18:43:00.615Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:50:49.706Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:51:32.563Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:51:49.497Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:52:09.449Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:53:02.255Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:46.171Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:50.380Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:50.589Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:50.791Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:51.008Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:54:51.158Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:55:05.758Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T18:55:16.240Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:58:31.947Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:58:32.666Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:58:32.846Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:58:32.969Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T18:58:42.145Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T18:58:46.042Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:03:06.741Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:12:32.511Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:12:50.230Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:16:00.188Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:16:16.235Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:24:25.599Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:24:35.748Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:25:05.395Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:25:11.121Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:26:03.422Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:26:08.940Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:29:31.328Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:29:31.549Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:29:37.399Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:32:41.473Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:32:44.154Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:32:46.072Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: usuario  no encontrado
+2026-05-04T19:33:01.230Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:37:20.349Z [ERROR] Error obtener libro: CastError: Cast to ObjectId failed for value "modificar" (type string) at path "_id" for model "Libro"
+2026-05-04T19:37:22.480Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:37:30.573Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:39:11.227Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:39:30.133Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:41:18.645Z [INFO] ::1 - - "POST /usuarios/logout" LOGOUT: cierre de sesión
+2026-05-04T19:41:26.177Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto
+2026-05-04T19:44:56.654Z [INFO] ::1 - - "POST /usuarios/login" LOGIN: login correcto

@@ -1,10 +1,10 @@
 import { Libro } from './libros';
 
 export interface Prestamo {
-    id: number;
+    id: string | number;
     libro: Libro;
     usuario: string;
-    fechaPrestamo: Date;
-    fechaDevolucion: Date;
+    fechaPrestamo: string | Date;
+    fechaDevolucion: string | Date;
     devuelto: boolean;
 }

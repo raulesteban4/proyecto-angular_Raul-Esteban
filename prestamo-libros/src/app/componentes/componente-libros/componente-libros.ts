@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { GestionarLibros } from '../../servicios/gestionar-libros';
 import { GestionarUsuarios } from '../../servicios/gestionar-usuarios';
 import { Libro } from '../../interfaces/libros';
@@ -26,12 +26,11 @@ export class ComponenteLibros {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
 
+  private gestionarLibros = inject(GestionarLibros);
+  private auth = inject(GestionarUsuarios);
 
-  estaAutenticado: any;
-
-  constructor(private gestionarLibros: GestionarLibros, private auth: GestionarUsuarios) {
-    this.estaAutenticado = this.auth.estaAutenticado;
-  }
+  estaAutenticado = this.auth.estaAutenticado;
+  esAdmin = this.auth.esAdmin;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -51,7 +50,7 @@ export class ComponenteLibros {
     this.getLibros();
   }
 
-  eliminarLibro(id: number): void {
+  eliminarLibro(id: string | number): void {
     if (!confirm('¿Desea eliminar este libro?')) return;
     this.gestionarLibros.bajaLibro(id).subscribe(success => {
       if (success) {

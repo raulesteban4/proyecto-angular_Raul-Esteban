@@ -4,7 +4,7 @@
 <button mat-button [matMenuTriggerFor]="menuLibros">Libros</button>
 <mat-menu #menuLibros="matMenu">
   <button mat-menu-item routerLink="/libros">Ver Libros</button>
-  <button mat-menu-item routerLink="/libros/alta">Alta Libro</button>
+  <button mat-menu-item *ngIf="esAdmin()" routerLink="/libros/alta">Alta Libro</button>
 </mat-menu>
 
 <button mat-button [matMenuTriggerFor]="menuPrestamos">Prestamos</button>

@@ -19,6 +19,7 @@ export class ComponenteMenu {
   private auth = inject(GestionarUsuarios);
   private router = inject(Router);
   estaAutenticado = this.auth.estaAutenticado;
+  esAdmin = this.auth.esAdmin;
   private librosService = inject(GestionarLibros);
 
   libros: Libro[] = [];

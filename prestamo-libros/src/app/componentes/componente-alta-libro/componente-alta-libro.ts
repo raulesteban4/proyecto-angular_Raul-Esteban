@@ -30,12 +30,14 @@ export class ComponenteAltaLibro {
   ) {}
 
   altaLibro(): void {
-    this.librosService.altaLibro(this.libro).subscribe(success => {
-      if (success) {
+    this.librosService.altaLibro(this.libro).subscribe(result => {
+      if (result.success) {
         alert('Libro dado de alta correctamente.');
-        this.router.navigate(['/libros']); // redirige a la lista de libros
+        this.router.navigate(['/libros']);
       } else {
-        alert('Ya existe un libro con este ID.');
+        const message = result.error || 'No se pudo dar de alta el libro.';
+        alert(message);
+        console.error('Error al crear libro:', result.details || result.error);
       }
     });
   }

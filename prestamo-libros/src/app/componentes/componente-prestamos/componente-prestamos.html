@@ -23,7 +23,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button (click)="marcarDevuelto(prestamo)">MARCAR DEVUELTO</button>
+      <button mat-button *ngIf="esAdmin()" (click)="marcarDevuelto(prestamo)">MARCAR DEVUELTO</button>
       <button mat-button [routerLink]="['/libros', prestamo.libro.id]">DETALLES</button>
     </mat-card-actions>
   </mat-card>

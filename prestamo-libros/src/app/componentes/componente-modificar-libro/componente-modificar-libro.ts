@@ -26,15 +26,22 @@ export class ComponenteModificarLibro {
   }
 
   getLibro(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id') || '';
     this.librosService.getLibro(id).subscribe(libro => this.libro = libro);
   }
 
   guardar(): void {
     if (this.libro) {
-      this.librosService.modificarLibro(this.libro);
-      alert('Libro modificado correctamente');
-      this.goBack();
+      this.librosService.modificarLibro(this.libro).subscribe(result => {
+        if (result.success) {
+          alert('Libro modificado correctamente');
+          this.goBack();
+        } else {
+            const message = result.error || 'No se pudo modificar el libro.';
+          alert(message);
+          console.error('Error al modificar libro:', result.details || result.error);
+        }
+      });
     }
   }
 

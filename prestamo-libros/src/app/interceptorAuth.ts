@@ -12,12 +12,22 @@ import { Router } from '@angular/router';
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   const auth = inject(GestionarUsuarios);
-  const router = inject(Router)
+  const router = inject(Router);
+  const token = auth.getToken();
 
-  return next(req).pipe(
+  let authReq = req;
+  if (token) {
+    authReq = req.clone({ 
+      headers: req.headers.set('Authorization', `Bearer ${token}`),
+      withCredentials: true
+    });
+  } else {
+    authReq = req.clone({ withCredentials: true });
+  }
+
+  return next(authReq).pipe(
     catchError((err) => {
       if (err instanceof HttpErrorResponse && err.status === 401) {
-        // Si estamos no autorizados, hacemos logout o redirección
         auth.logout().subscribe({
           next: () => {
             router.navigate(['/login']);

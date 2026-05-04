@@ -25,7 +25,7 @@ export class ComponenteLogin {
       },
       error: (err) => {
         console.error('Login fallido', err);
-        this.error = 'Codigo de usuario o contraseña incorrectos';
+        this.error = err.error?.message || 'Código de usuario o contraseña incorrectos.';
       }
     });
   }

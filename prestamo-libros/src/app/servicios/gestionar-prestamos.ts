@@ -1,62 +1,59 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Prestamo } from '../interfaces/prestamos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GestionarPrestamos {
-  private serviceUrl = '/prestamos.json';
-  private storageKey = 'prestamos';
+  private serviceUrl = 'http://localhost:3000/prestamos';
 
   constructor(private http: HttpClient) { }
 
-  /** Cargar PRÉSTAMOS: JSON la 1ª vez; después LocalStorage */
-  private cargarPrestamos(): Observable<Prestamo[]> {
-    const prestamosLS = localStorage.getItem(this.storageKey);
-
-    if (prestamosLS) {
-      return of(JSON.parse(prestamosLS));
-    } else {
-      return this.http.get<Prestamo[]>(this.serviceUrl).pipe(
-        map(prestamos => {
-          localStorage.setItem(this.storageKey, JSON.stringify(prestamos));
-          return prestamos;
-        })
-      );
-    }
+  private normalizePrestamo(prestamo: any): Prestamo {
+    return {
+      ...prestamo,
+      id: prestamo._id || prestamo.id,
+      libro: {
+        ...prestamo.libro,
+        id: prestamo.libro?._id || prestamo.libro?.id
+      },
+      usuario: typeof prestamo.usuario === 'string' ? prestamo.usuario : prestamo.usuario?.nombre || prestamo.usuario?.codigo || '',
+      fechaPrestamo: prestamo.fechaPrestamo,
+      fechaDevolucion: prestamo.fechaDevolucion,
+      devuelto: prestamo.devuelto
+    };
   }
-/** Obtener lista de préstamos */
+
   getPrestamos(): Observable<Prestamo[]> {
-  const prestamosLocal = localStorage.getItem(this.storageKey);
-
-  if (prestamosLocal) {
-    return of(JSON.parse(prestamosLocal));
-  } else {
-    return this.http.get<Prestamo[]>(this.serviceUrl).pipe(
-      map(prestamos => {
-        localStorage.setItem(this.storageKey, JSON.stringify(prestamos));
-        return prestamos;
-      })
+    return this.http.get<any[]>(this.serviceUrl).pipe(
+      map(prestamos => prestamos.map(p => this.normalizePrestamo(p)))
     );
   }
-}
-  /** Obtener préstamo por ID */
-  getPrestamo(id: number): Observable<Prestamo | undefined> {
-    return this.getPrestamos().pipe(
-      map(prestamos => prestamos.find(p => p.id === id))
+
+  getPrestamo(id: string | number): Observable<Prestamo | undefined> {
+    return this.http.get<any>(`${this.serviceUrl}/${id}`).pipe(
+      map(p => this.normalizePrestamo(p)),
+      catchError(() => of(undefined))
     );
   }
-  actualizarPrestamo(prestamoModificado: Prestamo): void {
-    const prestamos = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
 
-    const index = prestamos.findIndex((p: Prestamo) => p.id === prestamoModificado.id);
+  actualizarPrestamo(prestamoModificado: Prestamo): Observable<boolean> {
+    return this.http.put<any>(`${this.serviceUrl}/${prestamoModificado.id}`, {
+      fechaDevolucion: prestamoModificado.fechaDevolucion,
+      devuelto: prestamoModificado.devuelto
+    }).pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
+  }
 
-    if (index > -1) {
-      prestamos[index] = prestamoModificado;
-      localStorage.setItem(this.storageKey, JSON.stringify(prestamos));
-    }
+  crearPrestamo(libroId: string | number, fechaDevolucion: string | Date): Observable<boolean> {
+    return this.http.post<any>(this.serviceUrl, { libroId, fechaDevolucion }).pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 }
